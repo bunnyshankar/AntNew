@@ -1,0 +1,30 @@
+<project name="sample-ant" default="dist" basedir=".">
+	<description>
+	A sample ant build file to see what ant is like 
+	</description>
+
+	<property name="src" location="src/main/java"/>
+	<property name="build" location="target/classes"/>
+	<property name="dist" location="target"/>
+	
+	<target name="init">
+	<!--	<tstamp/>-->
+		<!--Make the build and dist folders-->
+		<mkdir dir="${build}"/>
+	</target>
+
+	<target name="compile" depends="init" description="compile the source code">
+		<javac srcdir="${src}" destdir="${build}"/>
+	</target>
+	
+	<target name="dist" depends="compile" description="Create the jar file">
+		<mkdir dir="${dist}/lib"/>
+		<jar jarfile="${dist}/lib/AntSample-${DSTAMP}.jar" basedir="${build}"/>
+	</target>
+
+	<target name="clean" description="Clean the target directory">
+	<delete dir="${build}"/>
+	<delete dir="${dist}"/>
+	</target>
+
+</project>
